@@ -9,6 +9,9 @@ $routeProvider
 		templateUrl: "views/home.html",
 		controller: "NinjaController"
 	})
+	.when('/contact', {
+		templateUrl: "views/contact.html",
+	})
 	.when('/directory', {
 		templateUrl: "views/directory.html",
 		controller: 'NinjaController'
@@ -63,6 +66,10 @@ myNinjaApp.controller('NinjaController', ['$scope', '$http', function($scope, $h
 		$scope.newninja.name = "";
 		$scope.newninja.belt = "";
 		$scope.newninja.rate = "";
+	};
+
+	$scope.removeAll = function(){
+		$scope.ninjas = [];
 	};
 
 	$http.get('data/ninjas.json').success(function(data){
