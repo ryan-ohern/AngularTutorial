@@ -3,27 +3,30 @@ var myNinjaApp = angular.module('myNinjaApp', ['ngRoute', 'ngAnimate']);
 
 // prep code that runs before app runs (ex. routing)
 myNinjaApp.config(['$routeProvider', function($routeProvider){
+// myNinjaApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 
-$routeProvider
-	.when('/home', {
-		templateUrl: "views/home.html",
-		controller: "NinjaController"
-	})
-	.when('/contact', {
-		templateUrl: "views/contact.html",
-		controller: "ContactController"
-	})
-	.when('/contact-success', {
-		templateUrl: "views/contact-success.html",
-		controller: "ContactController"
-	})
-	.when('/directory', {
-		templateUrl: "views/directory.html",
-		controller: 'NinjaController'
-	}).otherwise({
-		redirectTo: '/home'
-	});
-}]);
+// $locationProvider.html5Mode(true);
+
+	$routeProvider
+		.when('/home', {
+			templateUrl: "views/home.html",
+			controller: "NinjaController"
+		})
+		.when('/contact', {
+			templateUrl: "views/contact.html",
+			controller: "ContactController"
+		})
+		.when('/contact-success', {
+			templateUrl: "views/contact-success.html",
+			controller: "ContactController"
+		})
+		.when('/directory', {
+			templateUrl: "views/directory.html",
+			controller: 'NinjaController'
+		}).otherwise({
+			redirectTo: '/home'
+		});
+	}]);
 
 // myNinjaApp.run(function(){
 
