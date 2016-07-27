@@ -11,6 +11,11 @@ $routeProvider
 	})
 	.when('/contact', {
 		templateUrl: "views/contact.html",
+		controller: "ContactController"
+	})
+	.when('/contact-success', {
+		templateUrl: "views/contact-success.html",
+		controller: "ContactController"
 	})
 	.when('/directory', {
 		templateUrl: "views/directory.html",
@@ -79,3 +84,16 @@ myNinjaApp.controller('NinjaController', ['$scope', '$http', function($scope, $h
 	// console.log(angular.toJson($scope.ninjas));
 
 }]);
+
+// controller for contact success
+myNinjaApp.controller('ContactController', ['$scope', '$location', function($scope, $location){
+
+	$scope.sendMessage = function(){
+		$location.path('/contact-success');
+	};
+
+}]);
+
+
+
+
