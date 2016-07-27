@@ -1,5 +1,5 @@
 											// dependencies
-var myNinjaApp = angular.module('myNinjaApp', ['ngRoute']);
+var myNinjaApp = angular.module('myNinjaApp', ['ngRoute', 'ngAnimate']);
 
 // prep code that runs before app runs (ex. routing)
 myNinjaApp.config(['$routeProvider', function($routeProvider){
