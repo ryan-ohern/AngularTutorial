@@ -6,7 +6,8 @@ myNinjaApp.config(['$routeProvider', function($routeProvider){
 
 $routeProvider
 	.when('/home', {
-		templateUrl: "views/home.html"
+		templateUrl: "views/home.html",
+		controller: "NinjaController"
 	})
 	.when('/directory', {
 		templateUrl: "views/directory.html",
@@ -20,7 +21,29 @@ $routeProvider
 
 // });
 
-myNinjaApp.controller('NinjaController', ['$scope', function($scope){
+// custom directive
+myNinjaApp.directive('randomNinja', [function(){
+
+	return {
+		// use only as element (can also do attribute)
+		restrict: 'E',
+		scope: {
+			ninjas: '=',
+			title: '='
+		},
+		templateUrl: "views/random.html",
+		// allow content to be nested inside directive
+		transclude: true,
+		// replace directive/element name with outermost element of view
+		replace: true,
+		controller: function($scope){
+			$scope.random = Math.floor(Math.random() * 4);
+		}
+	};
+
+}]);
+
+myNinjaApp.controller('NinjaController', ['$scope', '$http', function($scope, $http){
 
 	$scope.removeNinja = function(ninja){
 		var removedNinja = $scope.ninjas.indexOf(ninja);
@@ -42,35 +65,10 @@ myNinjaApp.controller('NinjaController', ['$scope', function($scope){
 		$scope.newninja.rate = "";
 	};
 
-	$scope.ninjas = [
-		{
-			name: "Yoshi",
-			belt: "green",
-			rate: 50,
-			available: true,
-			thumb: "content/img/yoshi.png"
-		},
-		{
-			name: "Crystal",
-			belt: "yellow",
-			rate: 30,
-			available: true,
-			thumb: "content/img/crystal.png"
-		},
-		{
-			name: "Ryu",
-			belt: "orange",
-			rate: 10,
-			available: true,
-			thumb: "content/img/ryu.png"
-		},
-		{
-			name: "Shaun",
-			belt: "black",
-			rate: 1000,
-			available: true,
-			thumb: "content/img/shaun.png"
-		}
-	];
+	$http.get('data/ninjas.json').success(function(data){
+		$scope.ninjas = data;
+	});
+
+	// console.log(angular.toJson($scope.ninjas));
 
 }]);
